@@ -43,7 +43,7 @@ const NewPost = () => {
           const imageUrl = imageResponse.data.display_url;
           const newPostData = { ...postData, image: imageUrl };
           axios
-            .post('http://localhost:5000/api/post', newPostData)
+            .post('https://fierce-pear-pelican.cyclic.app/api/post', newPostData)
             .then((response) => {
               console.log('Post created:', response.data);
               // Clear the input fields
@@ -183,7 +183,7 @@ export default NewPost;
 //           const imageUrl = imageResponse.data.display_url;
 //           const newPostData = { ...postData, image: imageUrl };
 //           // Make the POST request with Axios inside this block
-//           axios.post('http://localhost:5000/api/post', newPostData)
+//           axios.post('https://fierce-pear-pelican.cyclic.app/api/post', newPostData)
 //             .then((response) => {
 //               console.log('Post created:', response.data);
 //             })
@@ -203,7 +203,7 @@ export default NewPost;
 //   //     formData.append('description', postData.description);
 //   //     formData.append('image', postData.image);
 
-//   //     const response = await axios.post('http://localhost:5000/api/post', formData, {
+//   //     const response = await axios.post('https://fierce-pear-pelican.cyclic.app/api/post', formData, {
 //   //       headers: {
 //   //         'Content-Type': 'multipart/form-data',
 //   //       },

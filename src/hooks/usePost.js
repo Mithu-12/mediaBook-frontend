@@ -8,7 +8,7 @@ const usePost = (posts, setPosts, userId) => {
   const handleLike = (postId) => {
     // Send a request to your server to record the like
     axios
-      .post(`http://localhost:5000/api/post/like/${postId}`, { userId: userId })
+      .post(`https://fierce-pear-pelican.cyclic.app/api/post/like/${postId}`, { userId: userId })
       .then((response) => {
         // Update the likes for the post on the frontend
         const updatedPosts = posts.map((post) => {
@@ -30,7 +30,7 @@ const usePost = (posts, setPosts, userId) => {
   const handleComment = (postId, commentText) => {
     // Send a request to your server to add a comment to the post
     axios
-      .post(`http://localhost:5000/api/post/comment/${postId}`, { text: commentText, userId: userId })
+      .post(`https://fierce-pear-pelican.cyclic.app/api/post/comment/${postId}`, { text: commentText, userId: userId })
       .then((response) => {
         // Update the comments for the post on the frontend
         const updatedPosts = posts.map((post) => {

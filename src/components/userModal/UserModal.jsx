@@ -39,7 +39,7 @@ const headers = {
   setLoading(true)
    
     axios
-      .put(`http://localhost:5000/api/users/${userId}`, userUpdate, {
+      .put(`https://fierce-pear-pelican.cyclic.app/api/users/${userId}`, userUpdate, {
         headers,
         withCredentials: true,
       })

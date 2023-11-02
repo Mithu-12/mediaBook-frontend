@@ -75,11 +75,11 @@ const validateForm = (values)=>{
     }
   };
   const handleGoogleSignup = () => {
-    window.open( 'http://localhost:5000/api/auth/google', '_self')
+    window.open( 'https://fierce-pear-pelican.cyclic.app/api/auth/google', '_self')
     
   };
   const handleFacebookSignup =  () => {
-    window.location.href = 'http://localhost:5000/api/auth/facebook';
+    window.location.href = 'https://fierce-pear-pelican.cyclic.app/api/auth/facebook';
    
   };
 

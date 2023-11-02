@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setUser } from '../slices/authSlice';
 
-const baseUrl = 'http://localhost:5000/api/auth';
+const baseUrl = 'https://fierce-pear-pelican.cyclic.app/api/auth';
 
 // Async thunk for registering a new user
 export const registerUser = createAsyncThunk(

@@ -71,7 +71,7 @@ const Login = () => {
   
 
   const handleGoogleLogin = () => {
-    window.open( 'http://localhost:5000/api/auth/google', '_self');
+    window.open( 'https://fierce-pear-pelican.cyclic.app/api/auth/google', '_self');
 
   };
 
@@ -79,7 +79,7 @@ const Login = () => {
 
 
   const handleFacebookLogin = () => {
-    window.open = 'http://localhost:5000/api/auth/facebook', '_self';
+    window.open = 'https://fierce-pear-pelican.cyclic.app/api/auth/facebook', '_self';
   };
 
   

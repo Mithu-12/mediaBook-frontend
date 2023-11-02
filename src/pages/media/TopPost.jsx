@@ -12,7 +12,7 @@ const TopPost = () => {
     const dispatch = useDispatch()
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/api/post').then((response) => {
+        axios.get('https://fierce-pear-pelican.cyclic.app/api/post').then((response) => {
           const postData = response.data
           setPosts(postData)
           dispatch(setPost(postData))
