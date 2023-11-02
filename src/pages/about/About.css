@@ -1,0 +1,28 @@
+/* About component container */
+.about-container {
+    padding: 32px;
+    position: relative;
+  }
+  
+  /* Edit button style */
+  .about-edit-button {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    padding: 10px;
+    background-color: bisque;
+  }
+  
+  /* User information style */
+  .about-info {
+    margin-top: 20px;
+  }
+  
+  /* Individual user information items */
+  .about-info-item {
+    margin: 5px 0;
+    padding: 10px 0;
+    font-weight: 500;
+    font-size: 24px;
+  }
+  
