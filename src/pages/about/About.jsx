@@ -20,7 +20,7 @@ const About = () => {
         </button>
       </div>
       <div className='about-info'>
-        <p className='about-info-item'>Name: {user?.userName || ''}</p>
+        <p className='about-info-item'>Name: {user?.name || ''}</p>
         <p className='about-info-item'>Email: {user?.email || ''}</p>
         <p className='about-info-item'>University: {user?.university || ''}</p>
         <p className='about-info-item'>Address: {user?.address || ''}</p>
