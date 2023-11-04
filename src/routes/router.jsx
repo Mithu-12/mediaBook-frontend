@@ -9,7 +9,7 @@ import Media from '../pages/media/Media';
 import Message from '../pages/Message/Message';
 import PostDetails from '../pages/media/PostDetails';
 import ProtectedRoute from './protectedRoute';
-// import LoginSuccess from '../pages/login/LoginSuccess';
+
 
 
 const router = createBrowserRouter([
@@ -31,10 +31,6 @@ const router = createBrowserRouter([
         element: <Login/>     
       },
       {
-        path: '/login/success',
-        element: <LoginSuccess/>     
-      },
-      {
         path: '/about',
         element: <ProtectedRoute><About/></ProtectedRoute>     
       },
@@ -51,11 +47,7 @@ const router = createBrowserRouter([
         path: '/postDetails/:id',
         element: <ProtectedRoute><PostDetails/></ProtectedRoute>     
       },
-      // {
-      //   path: '/login/success',
-      //   element: <LoginSuccess/>     
-      // },
-     
+    
       
     ],
   },
