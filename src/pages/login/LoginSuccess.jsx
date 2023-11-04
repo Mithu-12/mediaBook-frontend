@@ -14,12 +14,12 @@ const LoginSuccess = () => {
   useEffect(() => {
     async function handleLoginSuccess() {
       try {
-        // const response = await axios.get('http://localhost:8800/api/auth/login/success', {
-        //   withCredentials: true,
-        // });
         const response = await axios.get('https://fierce-pear-pelican.cyclic.app/api/auth/login/success', {
           withCredentials: true,
         });
+        // const response = await axios.get('http://localhost:5000/api/auth/login/success', {
+        //   withCredentials: true,
+        // });
 
         const data = response.data;
         console.log('google', data);

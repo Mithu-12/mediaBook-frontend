@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import axios from 'axios'
 import './Login.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { faChevronRight} from '@fortawesome/free-solid-svg-icons';
@@ -12,8 +12,8 @@ import { setUser } from '../../slices/authSlice';
 import InputField from '../../components/inputField/inputField';
 import LoaderSpiner from '../../components/Loader/LoaderSpiner';
 import useForm from '../../hooks/useForm';
-
-
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { app } from '../../firebase.config';
 const Login = () => {
 
   const [loginUser, { isLoading, isError, error }] = useLoginMutation();
@@ -21,10 +21,65 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation()
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth(app);
+ const from = location.state?.from?.pathname || '/';
+ 
+
+const handleGoogleLogin = ()=>{
+
+   signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const loginUser = result.user;
+    const savedUser = {name : loginUser.displayName, email: loginUser.email, picture: loginUser?.photoURL}
+    axios.post('https://fierce-pear-pelican.cyclic.app/api/auth/googlesignin', savedUser)
+    .then((response)=>{
+     const data = response.data
+     localStorage.setItem('access_token', data.access_token);
+        dispatch(setUser({...data.user, access_token: data.access_token}))
+        console.log('Login Successful!', data);
+  
+        navigate(from, {replace: true});
+    })
 
 
 
-  const from = location.state?.from?.pathname || '/';
+
+
+    // localStorage.setItem('access_token', loginUser.accessToken);
+    //     dispatch(setUser({...loginUser.reloadUserInfo, access_token: loginUser.access_token}))
+    // console.log('logingoogle', loginUser, loginUser.accessToken)
+    // navigate(from, {replace: true});
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
   const initialState = {
     identifier: '',
@@ -70,10 +125,10 @@ const Login = () => {
   };
   
 
-  const handleGoogleLogin = () => {
-    window.open( 'https://fierce-pear-pelican.cyclic.app/api/auth/google', '_self');
+  // const handleGoogleLogin = () => {
+  //   window.open( 'https://fierce-pear-pelican.cyclic.app/api/auth/google', '_self');
 
-  };
+  // };
 
 
 
@@ -134,7 +189,7 @@ const Login = () => {
           </div>
         </form>
         {/* {isError && <span>{error}</span>} */}
-        {/* <div
+        <div
           className=" m-auto w-full google-login "
           onClick={handleGoogleLogin}
         >
@@ -144,7 +199,7 @@ const Login = () => {
             alt=""
           />
           <button>Login with Google</button>
-        </div> */}
+        </div>
         {/* <div
           className="mt-4 w-full facebook-login "
           onClick={handleFacebookLogin}
