@@ -32,8 +32,7 @@ const handleGoogleLogin = ()=>{
   .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
+  
     const loginUser = result.user;
     const savedUser = {name : loginUser.displayName, email: loginUser.email, picture: loginUser?.photoURL}
     axios.post('https://fierce-pear-pelican.cyclic.app/api/auth/googlesignin', savedUser)
@@ -45,16 +44,6 @@ const handleGoogleLogin = ()=>{
   
         navigate(from, {replace: true});
     })
-
-
-
-
-
-    // localStorage.setItem('access_token', loginUser.accessToken);
-    //     dispatch(setUser({...loginUser.reloadUserInfo, access_token: loginUser.access_token}))
-    // console.log('logingoogle', loginUser, loginUser.accessToken)
-    // navigate(from, {replace: true});
-    // ...
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
@@ -67,19 +56,6 @@ const handleGoogleLogin = ()=>{
   });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
- 
 
   const initialState = {
     identifier: '',
@@ -190,7 +166,7 @@ const handleGoogleLogin = ()=>{
         </form>
         {/* {isError && <span>{error}</span>} */}
         <div
-          className=" m-auto w-full google-login "
+          className=" w-full google-login "
           onClick={handleGoogleLogin}
         >
           <img
