@@ -7,10 +7,12 @@
   /* Edit button style */
   .about-edit-button {
     position: absolute;
-    top: 55px;
+    top: 75px;
     right: 0;
-    padding: 10px;
-    background-color: bisque;
+    padding: 10px 15px;
+    background-color: rgb(243, 210, 26);
+    border-radius: 7px;
+
   }
   
   /* User information style */

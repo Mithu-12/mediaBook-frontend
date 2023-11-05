@@ -17,7 +17,7 @@ import { app } from '../../firebase.config';
 const Login = () => {
 
   const [loginUser, { isLoading, isError, error }] = useLoginMutation();
-  
+  const [loading, setLoading] = useState(false)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation()
@@ -26,8 +26,12 @@ const Login = () => {
  const from = location.state?.from?.pathname || '/';
  
 
-const handleGoogleLogin = ()=>{
+//  if(loading){
+//   return <LoaderSpiner/>
+//  }
 
+const handleGoogleLogin = ()=>{
+  setLoading(true)
    signInWithPopup(auth, provider)
   .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
@@ -35,13 +39,14 @@ const handleGoogleLogin = ()=>{
   
     const loginUser = result.user;
     const savedUser = {name : loginUser.displayName, email: loginUser.email, picture: loginUser?.photoURL}
+    setLoading(true)
     axios.post('https://fierce-pear-pelican.cyclic.app/api/auth/googlesignin', savedUser)
     .then((response)=>{
      const data = response.data
      localStorage.setItem('access_token', data.access_token);
         dispatch(setUser({...data.user, access_token: data.access_token}))
         console.log('Login Successful!', data);
-  
+
         navigate(from, {replace: true});
     })
   }).catch((error) => {
@@ -53,6 +58,8 @@ const handleGoogleLogin = ()=>{
     // The AuthCredential type that was used.
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
+  }) .finally(() => {
+    setLoading(false);
   });
 }
 
@@ -154,6 +161,9 @@ const handleGoogleLogin = ()=>{
 
           {
             isLoading ? <LoaderSpiner/> : null
+          }
+          {
+            loading ? <LoaderSpiner/> : null
           }
           {isError && (
             <span className="text-red-600 ">{error.data.message}</span>
